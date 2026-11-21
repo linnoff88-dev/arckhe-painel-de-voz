@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dale voz a tu agente con el Panel de Voz · INEMA</title>
+<meta name="description" content="Habla con tu asistente y sigue en el holograma cuándo escucha, procesa y responde.">
+<link rel="canonical" href="https://inematds.github.io/painel-de-voz/guia/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://inematds.github.io/painel-de-voz/guia/">
+<link rel="alternate" hreflang="en" href="https://inematds.github.io/painel-de-voz/guia/en/">
+<link rel="alternate" hreflang="es" href="https://inematds.github.io/painel-de-voz/guia/es/">
+<meta property="og:title" content="Dale voz a tu agente con el Panel de Voz">
+<meta property="og:description" content="Habla con tu asistente y sigue en el holograma cuándo escucha, procesa y responde.">
+<meta property="og:image" content="https://inematds.github.io/painel-de-voz/guia/assets/banner-es.jpg">
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .lang{display:inline-flex;gap:2px;font-family:Sora;font-size:.78rem}
+  .lang a{color:var(--mut);padding:.2em .45em;border-radius:6px} .lang a.on{color:var(--amb);background:rgba(226,162,59,.12)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  @media(max-width:520px){nav .wrap{gap:8px;padding:8px 14px;height:auto;flex-wrap:wrap} nav .links{gap:8px;margin-left:0;width:100%;justify-content:space-between} nav .btn{padding:.45em .7em;font-size:.82rem} .tgl{width:34px;height:34px}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;height:auto;display:block}
+  .resumo{padding:38px 0 34px;border-bottom:1px solid var(--line)}
+  .resumo p{font-size:1.12rem;line-height:1.7;max-width:74ch;margin:.55em 0 0}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px minmax(0,1fr);gap:16px;margin-bottom:26px}
+  .step>div,.card{min-width:0}
+  p code,li code,td code{overflow-wrap:anywhere}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;height:auto;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a class="brand" href="#top">Panel de Voz</a>
+<span class="sep">|</span>
+<span class="clubpro"><a class="inema" href="https://inema.club">INEMA.CLUB</a> <a class="pro" href="https://inema.pro">PRO</a></span>
+<div class="links"><a class="sec" href="#explicado">Lo que obtienes</a><a class="sec" href="#dia">El panel en tu día a día</a><a class="sec" href="#como">Cómo funciona</a><a class="sec" href="#comecar">Cómo empezar</a><a class="sec" href="#base">De dónde viene la idea</a><a class="sec" href="#prova">Qué puedes probar</a><span class="lang"><a href="../">PT</a><a href="../en/">EN</a><a class=on aria-current=page href="./">ES</a></span>
+<button class="tgl" id="themeToggle" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+<a class="btn" href="https://github.com/inematds/painel-de-voz">GitHub</a></div>
+</div></nav>
+<header class="hero" id="top"><div class="glow"></div><div class="wrap">
+<div><a class="chip" href="https://github.com/FatihMakes/Mark-LVII">FatihMakes · Mark-LVII</a><h1>Dale voz a tu agente con el Panel de Voz</h1>
+<p class="lead">Habla con tu asistente y sigue en el holograma cuándo escucha, procesa y responde.</p>
+<div class="cta"><a class="btn" href="../../app/">Abrir demostración (en portugués)</a><a class="btn ghost" href="#comecar">Cómo empezar</a></div><p class="sub" style="margin-top:14px">El panel público usa respuestas de ejemplo. La conversación con tu asistente se ejecuta mediante el puente instalado en la computadora.</p></div>
+<figure><img src="../assets/banner-es.jpg" alt="Panel de Voz"></figure></div></header>
+<main>
+<section id="resumo" class="resumo"><div class="wrap"><h2>En resumen</h2><p>El Panel de Voz es una interfaz para quienes usan o quieren crear un asistente personal como Intelecto. Reúne el micrófono, texto que puedes corregir, conversación y un núcleo holográfico que muestra el estado del asistente. En la demostración, escuchas un briefing, un resumen hablado con datos ficticios. Para conversar con tu propio asistente, instala el puente local, el programa que conecta el panel con el asistente de tu computadora. La idea surgió de Mark-LVII, de FatihMakes.</p>
+<figure style="margin:26px 0 0;border:1px solid var(--line);border-radius:16px;overflow:hidden"><img src="../assets/banner-grade-es.jpg" alt="Panel de Voz · Lo que obtienes" loading="lazy" style="width:100%;display:block"></figure>
+</div></section>
+<section id="explicado"><div class="wrap"><h2>Lo que obtienes</h2><div class="grid g3"><div class="card"><h3>Habla y revisa</h3><p>Comprueba lo que entendió el micrófono y corrige nombres u horarios antes de enviar.</p></div><div class="card"><h3>Sigue la respuesta</h3><p>El holograma cambia de ritmo mientras el panel graba, procesa o habla. La conversación guarda las respuestas de la pestaña abierta.</p></div><div class="card"><h3>Conecta tu asistente</h3><p>Usa Intelecto v2 o conecta otro agente mediante un puente. El panel funciona con el motor que elijas y adaptes.</p></div></div></div></section>
+<section id="base"><div class="wrap"><h2>De dónde viene la idea</h2><p class="sub">Mark-LVII demuestra voz, avatar, briefing y control de la computadora. En el código también encontramos tareas reanudables, rutinas con horario de silencio y verificación de citas. El análisis muestra qué puede convertirse en un plugin, una extensión que añade una función al asistente.</p>
+<div class="cta"><a class="btn" href="https://github.com/inematds/painel-de-voz/blob/main/docs/ANALISE-MARK-LVII.md">Leer el análisis de los módulos (en portugués)</a> <a class="btn ghost" href="https://github.com/FatihMakes/Mark-LVII">Mark-LVII ↗</a></div></div></section>
+<section id="dia"><div class="wrap"><h2>El panel en tu día a día</h2><p class="sub">Por la mañana, prueba un briefing con mensajes ficticios. Antes de la reunión, dicta una pregunta, revisa la hora reconocida y envíala. Si prefieres silencio, apaga el sonido y lee la respuesta.</p></div></section>
+<!-- VIDEO: entra o explicavideo do projeto quando publicado -->
+<section id="como"><div class="wrap"><h2>Cómo funciona</h2><p class="sub">Imagina un interfono con pantalla. El micrófono recibe tu pregunta, la pantalla muestra lo que dijiste y un puente envía tu solicitud al asistente instalado en la computadora. En la página pública, ves el panel y escuchas un briefing de ejemplo.</p></div></section>
+<section id="comecar"><div class="wrap"><h2>Cómo empezar</h2>
+<ol><li>Abre la demostración. Haz clic en “Ligar som” y luego en “Mostrar briefing de exemplo” para escuchar el resumen ficticio.</li><li>Para probar tu voz, haz clic en “Gravar pergunta” y permite el uso del micrófono si se solicita. Si aparece “Baixar português para o microfone”, hazlo e intenta grabar de nuevo. Habla, haz clic en “Parar e transcrever” y revisa el texto. Si el navegador indica que la función no es compatible, puedes escribir o usar la instalación local.</li><li>Para conectar tu asistente, sigue las instrucciones de instalación en el botón Instalación técnica. Si ya usas Codex o Claude Code, también puedes descargar el proyecto, abrir esa carpeta en la herramienta y pegar la solicitud de abajo.</li></ol>
+<div class="card"><p id="prompt">Lee el README de este proyecto y averigua qué asistente uso ya. Explica cómo conectar el Panel de Voz con él y cómo probar la grabación local. Muéstrame qué piensas cambiar y espera mi aprobación antes de modificar mi sistema.</p><button class="btn" id="copy" data-done="Solicitud copiada">Copiar solicitud</button></div>
+<div class="cta" style="margin-top:16px"><a class="btn" href="../../app/">Abrir demostración (en portugués)</a> <a class="btn ghost" href="https://github.com/inematds/painel-de-voz/blob/main/README.es.md">Instalación técnica</a></div>
+</div></section>
+<section id="prova"><div class="wrap"><h2>Qué puedes probar</h2><p class="sub">El briefing de demostración tiene una narración lista. En la instalación local, el panel graba cuando se le solicita, transcribe para que puedas revisar el texto y recibe la respuesta de Intelecto v2 o de un adaptador compatible.</p></div></section>
+<section id="faq"><div class="wrap"><h2>Preguntas frecuentes</h2><details><summary>¿Necesito una cuenta en algún servicio de inteligencia artificial?</summary><p>La demostración funciona sin cuenta. Para conversar con tu agente, instala el puente y elige qué programa generará las respuestas en tu computadora.</p></details></div></section>
+</main>
+<footer><div class="wrap"><p>Panel de Voz · <a href="https://github.com/inematds/painel-de-voz">GitHub</a> · <a href="https://inema.club">INEMA.CLUB</a></p></div></footer>
+<script>
+const themeButton = document.querySelector('#themeToggle');
+function updateTheme(light) {
+  document.body.classList.toggle('light',light);
+  themeButton.textContent = light ? '☀️' : '🌙';
+  themeButton.setAttribute('aria-pressed',String(light));
+}
+updateTheme(localStorage.getItem('painel-de-voz-theme') === 'light');
+themeButton.addEventListener('click', () => {
+  const light = !document.body.classList.contains('light');
+  updateTheme(light);
+  localStorage.setItem('painel-de-voz-theme', light ? 'light' : 'dark');
+});
+const copyButton = document.querySelector('#copy');
+copyButton.addEventListener('click', async () => {
+  const prompt = document.querySelector('#prompt');
+  try {
+    await navigator.clipboard.writeText(prompt.textContent);
+    copyButton.textContent = copyButton.dataset.done;
+  } catch {
+    const range = document.createRange();
+    range.selectNodeContents(prompt);
+    getSelection().removeAllRanges();
+    getSelection().addRange(range);
+  }
+});
+</script>
+</body></html>

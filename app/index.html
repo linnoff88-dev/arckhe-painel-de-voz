@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a1119">
+<title>Painel de Voz · INEMA</title>
+<link rel="stylesheet" href="style.css">
+<header class="top">
+  <a href="../guia/" class="brand"><span aria-hidden="true"></span> INEMA <small> / </small> Painel de Voz</a>
+  <a href="../guia/">Guia do projeto ↗</a>
+</header>
+<main>
+  <section class="stage" aria-labelledby="title">
+    <div class="stage-top">
+      <div><h1 id="title">Painel de Voz</h1><p id="mode">Demonstração · respostas de exemplo</p></div>
+      <button id="visual" type="button" aria-pressed="false">Modo onda</button>
+    </div>
+    <canvas id="hologram" aria-hidden="true"></canvas>
+    <div class="instrument">
+      <div class="signal"><span></span><strong id="state" role="status">Pronto</strong></div>
+      <p id="hint" aria-live="polite">Experimente o briefing ou escreva um pedido.</p>
+      <div class="actions">
+        <button id="language" type="button" hidden>Baixar português para o microfone</button>
+        <button id="mic" type="button" aria-pressed="false">Gravar pergunta</button>
+        <button id="voice" type="button" aria-pressed="false">Ligar som</button>
+      </div>
+    </div>
+  </section>
+  <section class="conversation" aria-labelledby="conversation-title">
+    <h2 id="conversation-title">Conversa</h2>
+    <div id="log" role="log" aria-label="Mensagens da conversa"><p class="empty">O que você quer perguntar ao seu assistente?</p></div>
+    <button id="example" type="button">Mostrar briefing de exemplo</button>
+    <form>
+      <label for="message">Seu pedido</label>
+      <div class="composer"><textarea rows="2" id="message" maxlength="4000" placeholder="Escreva ou grave uma pergunta…" required></textarea><button id="send" type="submit">Enviar</button></div>
+    </form>
+  </section>
+</main>
+<script type="module" src="panel.js"></script>
+</html>
