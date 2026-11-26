@@ -6,7 +6,7 @@
 </div>
 
 
-[![Painel de Voz](guia/assets/banner.jpg)](https://inematds.github.io/painel-de-voz/guia/)
+[![Painel de Voz](guia/assets/banner.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/)
 
 **PortuguêÂªs êÂ· [English](README.en.md) êÂ· [EspaêÂ±ol](README.es.md)**
 
@@ -14,7 +14,7 @@
 
 O Painel de Voz êÂ© uma interface para quem usa ou quer montar um assistente pessoal como o Intelecto. Ele reêÂºne microfone, texto que vocêÂª pode corrigir, conversa e um nêÂºcleo hologrêÂ¡fico que mostra o estado do assistente. Na demonstraêÂ§êÂ£o, vocêÂª ouve um briefing, um resumo falado com dados fictêÂ­cios. Para conversar com seu prêÂ³prio assistente, instale a ponte local, o programa que liga o painel ao assistente no seu computador. A ideia veio do Mark-LVII, de FatihMakes.
 
-[Abrir painel](https://inematds.github.io/painel-de-voz/app/) êÂ· [Guia](https://inematds.github.io/painel-de-voz/guia/) êÂ· [AnêÂ¡lise de plugins](docs/ANALISE-MARK-LVII.md)
+[Abrir painel](https://linnoff88-dev.github.io/arckhe-/app/) êÂ· [Guia](https://linnoff88-dev.github.io/arckhe-/guia/) êÂ· [AnêÂ¡lise de plugins](docs/ANALISE-MARK-LVII.md)
 
 > Leia o README deste projeto e descubra qual assistente eu jêÂ¡ uso. Explique como ligar o Painel de Voz a ele e como testar a gravaêÂ§êÂ£o local. Mostre o que pretende alterar e aguarde minha aprovaêÂ§êÂ£o antes de mexer no meu sistema.
 
@@ -31,7 +31,7 @@ A pêÂ¡gina pêÂºblica tem briefing fictêÂ­cio narrado, holograma e
 Use [Python 3.10 ou mais recente](https://www.python.org/downloads/), [Git](https://git-scm.com/install/) e um navegador atual. Abra um terminal (PowerShell no Windows, Terminal no macOS ou Linux), vêÂ¡ atêÂ© a pasta onde guarda seus projetos e cole o bloco abaixo. No Windows, troque `python3` por `py -3` se necessêÂ¡rio.
 
 ```bash
-git clone https://github.com/inematds/painel-de-voz.git
+git clone https://github.com/linnoff88-dev/painel-de-voz.git
 cd painel-de-voz
 python3 bridge.py
 ```
@@ -47,14 +47,14 @@ python -m piper.download_voices pt_BR-faber-medium
 python bridge.py --whisper-model base --piper-model pt_BR-faber-medium.onnx
 ```
 
-Quem jêÂ¡ tem o ambiente do inemavox com faster-whisper pode usar aquele Python e o modelo em cache, por exemplo `--whisper-model base`. No Windows, crie o ambiente com `py -3 -m venv .venv` e ative-o com `.venv\Scripts\Activate.ps1`. Linux foi o sistema de teste.
+Quem jêÂ¡ tem o ambiente do ARCKHÉvox com faster-whisper pode usar aquele Python e o modelo em cache, por exemplo `--whisper-model base`. No Windows, crie o ambiente com `py -3 -m venv .venv` e ative-o com `.venv\Scripts\Activate.ps1`. Linux foi o sistema de teste.
 
 ## O processo, do inêÂ­cio ao fim
 
 1. **Conecte o Intelecto v2**. Com a ponte parada, baixe o Intelecto v2 ao lado do projeto. Use a linha com os parêÂ¢metros de voz se vocêÂª baixou os modelos acima.
 
    ```bash
-   git clone https://github.com/inematds/intelecto-v2.git ../intelecto-v2
+   git clone https://github.com/linnoff88-dev/intelecto-v2.git ../intelecto-v2
    python3 bridge.py --intelecto ../intelecto-v2
    python3 bridge.py --intelecto ../intelecto-v2 --whisper-model base --piper-model pt_BR-faber-medium.onnx
    ```

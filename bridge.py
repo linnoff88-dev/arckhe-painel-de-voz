@@ -137,7 +137,7 @@ class Handler(BaseHTTPRequestHandler):
         elif self.path in ('/', '/app', '/guia', '/guia/'):
             if self.path.startswith('/guia'):
                 self.send_response(302)
-                self.send_header('Location', 'https://inematds.github.io/painel-de-voz/guia/')
+                self.send_header('Location', 'https://linnoff88-dev.github.io/arckhe-/guia/')
             else:
                 self.send_response(302)
                 self.send_header('Location', '/app/')

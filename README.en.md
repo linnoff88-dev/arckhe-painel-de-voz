@@ -1,6 +1,6 @@
 # Voice Panel
 
-[![Voice Panel](guia/assets/banner-en.jpg)](https://inematds.github.io/painel-de-voz/guia/en/)
+[![Voice Panel](guia/assets/banner-en.jpg)](https://linnoff88-dev.github.io/arckhe-/guia/en/)
 
 **[Português](README.md) · English · [Español](README.es.md)**
 
@@ -8,7 +8,7 @@
 
 Voice Panel is an interface for people who use or want to build a personal assistant like Intelecto. It brings together a microphone, editable text, conversation, and a holographic core that shows the assistant's state. In the demo, you can hear a briefing, a spoken summary with fictional data. To talk to your own assistant, install the local bridge, the program that connects the panel to the assistant on your computer. The idea came from Mark-LVII by FatihMakes.
 
-[Open panel](https://inematds.github.io/painel-de-voz/app/) · [Guide](https://inematds.github.io/painel-de-voz/guia/en/) · [Plugin analysis](docs/ANALISE-MARK-LVII.md)
+[Open panel](https://linnoff88-dev.github.io/arckhe-/app/) · [Guide](https://linnoff88-dev.github.io/arckhe-/guia/en/) · [Plugin analysis](docs/ANALISE-MARK-LVII.md)
 
 > Read this project's README and find out which assistant I already use. Explain how to connect Voice Panel to it and how to test local recording. Show what you plan to change and wait for my approval before modifying my system.
 
@@ -25,7 +25,7 @@ The public page has a fictional narrated briefing, a Canvas hologram, and text s
 Use [Python 3.10 or later](https://www.python.org/downloads/), [Git](https://git-scm.com/install/), and a current browser. Open a terminal (PowerShell on Windows, Terminal on macOS or Linux), go to the folder where you keep your projects, and paste the block below. On Windows, replace `python3` with `py -3` if needed.
 
 ```bash
-git clone https://github.com/inematds/painel-de-voz.git
+git clone https://github.com/linnoff88-dev/painel-de-voz.git
 cd painel-de-voz
 python3 bridge.py
 ```
@@ -41,14 +41,14 @@ python -m piper.download_voices pt_BR-faber-medium
 python bridge.py --whisper-model base --piper-model pt_BR-faber-medium.onnx
 ```
 
-If you already have the inemavox environment with faster-whisper, you can use that Python and the cached model, for example `--whisper-model base`. On Windows, create the environment with `py -3 -m venv .venv` and activate it with `.venv\Scripts\Activate.ps1`. Linux was used for testing.
+If you already have the ARCKHÉvox environment with faster-whisper, you can use that Python and the cached model, for example `--whisper-model base`. On Windows, create the environment with `py -3 -m venv .venv` and activate it with `.venv\Scripts\Activate.ps1`. Linux was used for testing.
 
 ## The process from start to finish
 
 1. **Connect Intelecto v2**. With the bridge stopped, download Intelecto v2 next to the project. Use the line with the voice parameters if you downloaded the models above.
 
    ```bash
-   git clone https://github.com/inematds/intelecto-v2.git ../intelecto-v2
+   git clone https://github.com/linnoff88-dev/intelecto-v2.git ../intelecto-v2
    python3 bridge.py --intelecto ../intelecto-v2
    python3 bridge.py --intelecto ../intelecto-v2 --whisper-model base --piper-model pt_BR-faber-medium.onnx
    ```
