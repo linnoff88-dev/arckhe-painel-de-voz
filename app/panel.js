@@ -3,8 +3,8 @@ import {animate} from './hologram.js';
 const $ = (id) => document.getElementById(id);
 const form = document.querySelector('form');
 const bridge = location.hostname === '127.0.0.1' && document.documentElement.dataset.bridge === 'yes';
-const briefing = 'Neste briefing de exemplo, você tem cinco mensagens simuladas e uma reunião às dez. O painel está pronto para receber seu próximo pedido.';
-const status = {idle:'Pronto', recording:'Gravando', processing:'Processando', speaking:'Falando', error:'Atenção'};
+const briefing = 'Neste briefing de exemplo, você tem cinco mensagens simuladas e uma reuniêo às dez. O painel está pronto para receber seu próximo pedido.';
+const status = {idle:'Pronto', recording:'Gravando', processing:'Processando', speaking:'Falando', error:'Atençêo'};
 const session = crypto.randomUUID();
 const speechLanguage = {langs:['pt-BR'], processLocally:true};
 let state = 'idle';
@@ -81,7 +81,7 @@ async function endpoint(path, body, type = 'application/json', timeout = 95000) 
   const response = await fetch(path, {method:'POST', body, headers:{'Content-Type':type}, signal:AbortSignal.timeout(timeout)});
   if (!response.ok) {
     const problem = await response.json().catch(() => ({}));
-    throw new Error(problem.error || 'A ponte local não respondeu. Confira o terminal.');
+    throw new Error(problem.error || 'A ponte local nêo respondeu. Confira o terminal.');
   }
   return response;
 }
@@ -128,7 +128,7 @@ async function send(text, sample = false) {
   try {
     const response = sample ? briefing : bridge
       ? (await (await endpoint('/chat', JSON.stringify({session, text}))).json()).reply
-      : 'Recebi seu pedido. Você está no modo de demonstração. Abra o painel pela ponte local para receber uma resposta do seu assistente.';
+      : 'Recebi seu pedido. Você está no modo de demonstraçêo. Abra o painel pela ponte local para receber uma resposta do seu assistente.';
     addMessage('assistant', response);
     await speak(response, sample);
   } catch (error) {
@@ -147,7 +147,7 @@ $('example').addEventListener('click', () => void send('Me dê o briefing de exe
 async function localSpeech() {
   const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!Recognition?.available || !('processLocally' in Recognition.prototype)) {
-    update('error','Este navegador não oferece transcrição local. Digite ou abra pela ponte local.');
+    update('error','Este navegador nêo oferece transcriçêo local. Digite ou abra pela ponte local.');
     return;
   }
   update('processing','Verificando o reconhecimento de voz local…');
@@ -162,7 +162,7 @@ async function localSpeech() {
     return;
   }
   if (ready !== 'available') {
-    update('error','O idioma português local não está pronto neste navegador. Use a ponte local ou digite.');
+    update('error','O idioma português local nêo está pronto neste navegador. Use a ponte local ou digite.');
     return;
   }
   const recognition = new Recognition();
@@ -171,7 +171,7 @@ async function localSpeech() {
   recognition.onresult = ({results}) => putTranscript(results[0][0].transcript);
   recognition.onerror = ({error}) => update('error', error === 'not-allowed'
     ? 'Permita o acesso ao microfone nas configurações do site ou digite.'
-    : 'O navegador não conseguiu transcrever. Tente novamente ou digite.');
+    : 'O navegador nêo conseguiu transcrever. Tente novamente ou digite.');
   recognition.onend = () => { if (state === 'recording') update('idle'); };
   recorder = recognition;
   recognition.start();
@@ -183,19 +183,19 @@ $('language').addEventListener('click', async () => {
   update('processing', 'Baixando o português para o reconhecimento local…');
   try {
     const installed = await Recognition.install(speechLanguage);
-    if (!installed) throw new Error('O navegador não concluiu o download.');
+    if (!installed) throw new Error('O navegador nêo concluiu o download.');
     $('language').hidden = true;
     update('idle', 'Português instalado. Clique em Gravar pergunta.');
     $('mic').focus();
   } catch {
-    update('error', 'O navegador não conseguiu instalar o idioma. Tente de novo, digite ou use a ponte local.');
+    update('error', 'O navegador nêo conseguiu instalar o idioma. Tente de novo, digite ou use a ponte local.');
   }
 });
 
 function putTranscript(text) {
   if (!text.trim()) { update('error','Nenhuma fala detectada. Tente novamente.'); return; }
   $('message').value = text.slice(0, 4000);
-  update('idle', 'Revise a transcrição antes de enviar.');
+  update('idle', 'Revise a transcriçêo antes de enviar.');
   $('message').focus();
 }
 

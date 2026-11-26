@@ -1,4 +1,4 @@
-"""Ponte local do Painel de Voz, sem dependências para o modo de demonstração."""
+"""Ponte local do Painel de Voz, sem dependências para o modo de demonstraçêo."""
 import argparse
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -45,7 +45,7 @@ class Bridge:
         self.label = (
             ('Intelecto v2 · ' + (args.intelecto_model or 'motor simulado')) if self.intelecto
             else 'Assistente conectado por adaptador' if args.adapter
-            else 'Ponte local · respostas de demonstração'
+            else 'Ponte local · respostas de demonstraçêo'
         )
 
     def respond_with_intelecto(self, session, text):
@@ -61,7 +61,7 @@ class Bridge:
         if not isinstance(text, str) or not 0 < len(text.strip()) <= 4000:
             raise Problem('Escreva um pedido de até 4.000 caracteres.')
         if not isinstance(session, str) or not SESSION.fullmatch(session):
-            raise Problem('A sessão do painel expirou. Recarregue a página.')
+            raise Problem('A sessêo do painel expirou. Recarregue a página.')
         if self.intelecto:
             return self.agent_worker.submit(self.respond_with_intelecto, session, text).result()
         if self.args.adapter:
@@ -97,7 +97,7 @@ class Bridge:
             input=text[:3000].encode() + b'\n', capture_output=True, timeout=30, check=True,
         )
         if result.stdout[:4] != b'RIFF':
-            raise Problem('O Piper não devolveu áudio WAV.', 502)
+            raise Problem('O Piper nêo devolveu áudio WAV.', 502)
         return result.stdout
 
 
@@ -115,7 +115,7 @@ class Handler(BaseHTTPRequestHandler):
         return f'127.0.0.1:{self.server.server_port}'
 
     def log_message(self, format, *args):
-        # Pedidos, nomes de sessão e áudio ficam fora do log HTTP.
+        # Pedidos, nomes de sessêo e áudio ficam fora do log HTTP.
         pass
 
     def send_content(self, status, content, mime):
@@ -151,7 +151,7 @@ class Handler(BaseHTTPRequestHandler):
             name = self.path[5:]
             self.send_content(200, (APP / name).read_bytes(), APP_FILES[name])
         else:
-            self.send_json({'error': 'Página não encontrada.'}, 404)
+            self.send_json({'error': 'Página nêo encontrada.'}, 404)
 
     def do_POST(self):
         try:
@@ -160,11 +160,11 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json({'error': str(error)}, error.status)
             return
         except (ValueError, TypeError, AttributeError, UnicodeError):
-            self.send_json({'error': 'O formato recebido pelo painel não é válido.'}, 400)
+            self.send_json({'error': 'O formato recebido pelo painel nêo é válido.'}, 400)
             return
         except Exception as error:
             print(f'Falha em {self.path}: {type(error).__name__}', flush=True)
-            self.send_json({'error': 'A operação local falhou. Confira o modelo e o adaptador no terminal.'}, 502)
+            self.send_json({'error': 'A operaçêo local falhou. Confira o modelo e o adaptador no terminal.'}, 502)
             return
         self.send_content(status, data, mime)
 
@@ -173,10 +173,10 @@ class Handler(BaseHTTPRequestHandler):
             raise Problem('Só o painel aberto neste endereço pode usar a ponte.', 403)
         path = self.path
         if path not in ('/chat', '/transcribe', '/speak'):
-            raise Problem('Operação desconhecida.', 404)
+            raise Problem('Operaçêo desconhecida.', 404)
         allowed = AUDIO_TYPES if path == '/transcribe' else {'application/json'}
         if self.headers.get_content_type() not in allowed:
-            raise Problem('Formato de mídia não aceito.', 415)
+            raise Problem('Formato de mídia nêo aceito.', 415)
         length = int(self.headers.get('Content-Length', '0'))
         if not 0 < length <= (2_000_000 if path == '/transcribe' else 65_536):
             raise Problem('O pedido está vazio ou é grande demais.', 413)
